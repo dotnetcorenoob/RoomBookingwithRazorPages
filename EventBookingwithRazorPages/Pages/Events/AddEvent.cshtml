@@ -1,0 +1,34 @@
+﻿@page
+@model EventBookingwithRazorPages.Pages.Events.AddEventModel
+@{
+    var message = ViewData["Message"]?.ToString();
+}
+<form method="post">
+<h1>
+    Add a booking
+</h1>
+
+@if(!string.IsNullOrEmpty(message))
+    {
+        <div class="alert alert-success mb-3" role="alert">
+            @message
+        </div>
+    }
+    <div class="mb-3">
+    <label class="form-label">Title</label>
+        <input type="text" class="form-control" asp-for="AddEventRequest.title" />
+</div>
+    <div class="mb-3">
+        <label class="form-label">Start Date</label>
+        <input type="date" class="form-control" asp-for="AddEventRequest.startDateTime" />
+</div>
+    <div class="mb-3">
+        <label class="form-label">End Date Time</label>
+        <input type="date" class="form-control" asp-for="AddEventRequest.endDateTime" />
+</div>
+    <div >
+    <button type="submit" class="btn btn-primary mr-3">Add</button>
+        <a class="btn btn-primary" asp-page="/Events/ListEvents">View Events</a>
+</div>
+    
+</form>
