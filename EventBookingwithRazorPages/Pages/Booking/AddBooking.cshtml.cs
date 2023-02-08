@@ -18,18 +18,22 @@ namespace EventBookingwithRazorPages.Pages.Events
         public void OnGet()
         {
         }
-        public void OnPost() {
-            var eventDomainModel = new Event
+        public void OnPost()
+        {
+            if (ModelState.IsValid)
             {
-                title = AddEventRequest.title,
-                startDateTime = AddEventRequest.startDateTime,
-                endDateTime = AddEventRequest.endDateTime
+                var eventDomainModel = new Event
+                {
+                    title = AddEventRequest.title,
+                    startDateTime = AddEventRequest.startDateTime,
+                    endDateTime = AddEventRequest.endDateTime
 
-            };
-            dbContext.Events.Add(eventDomainModel);
-            dbContext.SaveChanges();
-            ViewData["Message"] = "Booking Added Successfully";
-            ModelState.Clear();
+                };
+                dbContext.Events.Add(eventDomainModel);
+                dbContext.SaveChanges();
+                ViewData["Message"] = "Booking Added Successfully";
+                ModelState.Clear();
+            }
         }
     }
 }

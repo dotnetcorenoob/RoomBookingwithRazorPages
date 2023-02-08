@@ -27,11 +27,13 @@
 </div>
     <div class="mb-3">
         <label class="form-label">Start Date</label>
-        <input id="txtStartDate" type="date" class="form-control" asp-for="AddEventRequest.startDateTime" />
+        <input id="startDate" type="date" class="form-control" asp-for="AddEventRequest.startDateTime" />
+        <span asp-validation-for="AddEventRequest.startDateTime" class="text-danger"></span>
 </div>
     <div class="mb-3">
         <label class="form-label">End Date Time</label>
-        <input id="txtEndDate" type="date" class="form-control" asp-for="AddEventRequest.endDateTime" />
+        <input id="endDate" type="date" class="form-control" asp-for="AddEventRequest.endDateTime" />
+        <span asp-validation-for="AddEventRequest.endDateTime" class="text-danger"></span>
 </div>
     <div >
     <button type="submit" class="btn btn-primary mr-3">Add</button>
@@ -40,21 +42,21 @@
     
 </form>
 
-<script type="text/javascript">
-    $(function () {
-        $('[id*=txtStartDate]').datepicker({
-            onSelect: function (selected) {
-                var dt = new Date(selected);
-                dt.setDate(dt.getDate() + 1);
-                $("[id*=txtEndDate]").datepicker("option", "minDate", dt);
-            }
-        });
-        $('[id*=txtEndDate]').datepicker({
-            onSelect: function (selected) {
-                var dt = new Date(selected);
-                dt.setDate(dt.getDate() - 1);
-                $("[id*=txtStartDate]").datepicker("option", "maxDate", dt);
-            }
-        });
-    });
-</script>
+@*@section  Scripts{
+    <script>
+        //I use js to allow users to select only the latest date up to yesterday
+        function addZero(n) {
+            return parseInt(n) >= 10 ? n.toString() : '0' + n;
+        }
+        let dateNow = new Date(),
+            yearNow = dateNow.getFullYear(),
+            monthNow = dateNow.getMonth() + 1,
+            dayNow = dateNow.getDate() - 1,
+            maxDate = yearNow + '-' + addZero(monthNow) + '-' + addZero(dayNow);
+        let inp = document.querySelector('#startDate');
+        let inp2 = document.querySelector('#endDate');
+        inp.setAttribute('max', maxDate);
+        inp2.setAttribute('max',maxDate);
+
+    </script>
+}*@
