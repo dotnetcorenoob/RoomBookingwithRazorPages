@@ -18,7 +18,7 @@ namespace EventBookingwithRazorPages.Pages.Events
         
         {
             var events =  dbContext.Events.Select(x => new {
-                title = x.title,
+            title = x.title,
             start = x.startDateTime,
             end= x.endDateTime}).ToList();
             return new JsonResult(events);

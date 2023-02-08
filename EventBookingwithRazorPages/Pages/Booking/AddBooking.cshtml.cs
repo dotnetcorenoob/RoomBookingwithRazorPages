@@ -28,7 +28,7 @@ namespace EventBookingwithRazorPages.Pages.Events
             };
             dbContext.Events.Add(eventDomainModel);
             dbContext.SaveChanges();
-            ViewData["Message"] = "Even Added Successfully";
+            ViewData["Message"] = "Booking Added Successfully";
             ModelState.Clear();
         }
     }
